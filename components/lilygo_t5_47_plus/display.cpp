@@ -22,11 +22,11 @@ void LilygoT5_47PlusDisplay::setup() {
 
   epd_init();
   uint32_t buffer_size = this->get_buffer_length_();
-  ESP_LOGD(TAG, "Buffer size: %u bytes", buffer_size);
+  ESP_LOGD(TAG, "Buffer size: %lu bytes", buffer_size);
 
   this->buffer_ = (uint8_t *) heap_caps_malloc(buffer_size, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
   if (this->buffer_ == nullptr) {
-    ESP_LOGE(TAG, "Could not allocate display buffer (%u bytes). Is PSRAM enabled?", buffer_size);
+    ESP_LOGE(TAG, "Could not allocate display buffer (%lu bytes). Is PSRAM enabled?", buffer_size);
     this->mark_failed();
     return;
   }
@@ -115,7 +115,7 @@ void LilygoT5_47PlusDisplay::display() {
   epd_poweroff();
   uint32_t t4 = esphome::millis();
 
-  ESP_LOGD(TAG, "EPD refresh done: poweron=%ums clear=%ums draw=%ums poweroff=%ums total=%ums", t1 - t0, t2 - t1,
+  ESP_LOGD(TAG, "EPD refresh done: poweron=%lums clear=%lums draw=%lums poweroff=%lums total=%lums", t1 - t0, t2 - t1,
            t3 - t2, t4 - t3, t4 - t0);
 }
 
